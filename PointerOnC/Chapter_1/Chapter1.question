@@ -1,0 +1,15 @@
+1.7 Questions: (in Chinese)
+1. 虽然C语言是free style，但是在个人项目或者团队项目中保持良好编程风格（包括外观和留白），可以使代码美观、易读，对其他项目成员或用户更友好。
+   在我们使用的团队项目中，通常都有代码静态检查，对编程风格的要求很严格。
+2. 将声明放到头文件中，在需要的时候直接#include 该头文件，便于维护和修改。而且省去了重复声明的麻烦，而重复声明难免会出问题。
+3. 使用#define定义常量，在预编译时对代码中所有的常量进行预处理，而且便于维护和统一修改。
+4. printf("%d %c %g\n", a, b, c);  %f 浮点数，十进制计数法    %g根据数值不同自动选择%f或%e。%e在指数小于-4或者大于等于精度时使用
+5. scanf("%d,%d,%s",&quantity, &price, &department); 这是错误的吗，为什么？	
+   根据P9脚注，就算加上也没事。数组参数前不需要加上&。但是如果是指定下标的数组参数，就需要啦。
+6. 此答案在P10的提示中。
+	在C语言中不进行数组有效性检查的是编译器，如果需要必须手动增加代码进行检查。给了程序员更大的自由。也允许了越界访问。但是如果不进行检查，而数组下标超出范围，则可能会访问紧随数组之后的内存位置。
+7. 通过dash查找 strcpy的手册，有如下描述:
+	 The behavior is undefined if the dest array is not large enough. The behavior is undefined if the strings overlap. The behavior is undefined if either dest is not a pointer to a character array or src is not a pointer to a null-terminated byte string.
+  	所以如果input比output大很多，后果不可测。
+8. 假如input非常非常大，就会导致input数组溢出，因为当一个数组作为函数的参数进行传递时，函数无法知道它的长度。因此gets函数无法防止非常长的输入，导致input溢出，fgets 函数要求数组的长度作为参数传递给它，所以可以避免此问题。
+   
