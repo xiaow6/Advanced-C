@@ -14,14 +14,14 @@ int main(void) {
 		len = strlen(input);
 		if (len >= len_max) {
 			len_max = len;
-			strcpy(output, input);   
+			strcpy(output,input);  
 			/*string 赋值的方法*/
 		}
 		printf("%s\n", output);
-		if ((ch = getchar()) == '\n') break;
+		/*if ((ch = getchar()) == '\n') break; 吃掉开头字符的是这个函数啊。。*/
 	}
 	/*做一道检查，不直接打印,input有能为空*/
 	if (len_max >= 0)
-		printf("%s\n", output);
+		printf("%s\n", utput);
 	return EXIT_SUCCESS;
 }
