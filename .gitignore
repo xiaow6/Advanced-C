@@ -1,2 +1,3 @@
 example
 *.swp
+.DS_Store
