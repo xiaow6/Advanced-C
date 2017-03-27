@@ -10,9 +10,9 @@ int main(void) {
 		putchar(ch);
 		if (ch == '\n') break;
 	}
-	if (checksum > 127) 
+	/*if (checksum > 127) 
 		checksum = 127;
 	else if (checksum < -128) 
-		checksum = -128;
+		checksum = -128; */
 	printf("checksum = %d\n", checksum);
 }
