@@ -1,0 +1,60 @@
+1. check <limit.h>, 从编译工具链中的limit.h中找到。
+2. 在tina中，<float.h>中均以宏的方式定义的具体范围。宏的定义在哪里没有找到，这些宏似乎是编译器默认定义的。
+3. 为了适应不同的机器，可以包含一个头文件，使用typedef重新定义变量类型。使用明显的数字跟在类型后，便于判断。
+如：32bit机器：
+typedef signed char    int8;
+typedef short int      int16;
+typedef int            int32;
+typedef int            defint8;
+typedef int            defint16;
+typedef int 		   defint32;
+在32位机器上，char 8, short 16, int 32. defint8,16,32都可以放在int中。
+16bit 机器：
+typedef signed char   int8;
+typedef int 	      int16;
+typedef long int      int32;
+typedef int           defint8;
+typedef int           defint16;
+typedef long int      defint32;
+这样如果你使用定义后的类型名，就不需要担心了。
+
+4. 一般来说会给出一个warning。高位数据可能被截掉。
+5. 一般来说会给出一个warning. 如果传递的值可以放到single中，那没问题，如果精度很高，放到double中会造成问题。
+6. enum Coin {PENNY = 1, NICKEL = 5, DIME = 10,
+				QUARTER = 25, HALF_DOLLAR = 50, DOLLAR = 100};
+7. %s 打印的字符串，如果是%d 就会按数字打。enum本质是int。
+8. 
+9. signed 关键字主要为char用，允许其他使用也算是一致性。
+10. 不能，位数固定。一个从负到正，一个从0到双倍正
+11.float 比 int 范围大。但是如果它的位数和 int 一样，无法表示比 int 多的不同值。但是float 表示小数有多种方法，所以能够表示的不同值比int小。
+12. 一样
+13. 如果加了const，右边出错，不能给const赋值。
+14. 错。因为有可能有嵌套的声明。从嵌套声明处会隐藏原声明。
+15. 错。
+16.不会。
+17.不需要，scope是extern，而且全文件有效。全文件可以用。
+18. 不会，本文件是可用。
+19. extern int a;
+20. static 则不允许其他文件访问。
+21. 可能相同，但是每次执行到，堆栈中的数据会随函数调用和结束分配和销毁。
+22. Inside:the variable is automatic,it is reinitialized each time the function is called,its scope is limited to the function,it has no linkage.
+    Outside:the variable is static,it is initialized only once before the program begins to run,it has ﬁle scope,and external linkage.
+23.
+static char b = 2;
+void y(void) {
+	
+}
+int a = 1;
+void x(void) {
+	static float d = 4;
+	int c = 3;
+}
+24. 错误只有一处：line 6 : int c二次定义
+	w       static    1-8 17-31        internal    5
+	x       static    2-8 23-31        external    如果没有其他地方声明，则为0
+	func1              4-31            external   
+	a       auto       5-18,23         none        传入的形参
+	b,c(4)     auto      5-11,16-23       none        传入的形参
+	d(4)       auto      9-11 16          none         garbage
+	e 6        auto      6-8  17-23      none         1
+	略
