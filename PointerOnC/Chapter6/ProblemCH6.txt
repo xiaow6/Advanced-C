@@ -1,0 +1,14 @@
+1. 在定义时指定类型，编译器会处理。程序猿和机器都无法判断。
+2. 很少用到吧，编译器会随机存放数据，你也没办法知道地址的值。
+3. 因为它是个整数，类型指定了使用它的方式。
+4. 这很危险，首先解NULL是不可控制的，也不知道会产生什么结果，也不知道对不对。
+5. Even if offset has the same value as the literal in the next expression, it is more time consuming
+to evaluate the first expression because the multiplication to scale offset to the size of an
+integer must be done at run time. This is because the variable might contain any value, and the
+compiler has no way of knowing ahead of time what the value might actually be. On the other
+hand, the literal three can be scaled to an integer by multiplying it at compile time, and the result
+of that multiplication is simply added to p at run time. In other words, the second expression
+can be implemented by simply adding 12 to p (on a machine with four-byte integers); no runtime
+multiplication is needed.
+6. ++pi导致第0个元素没有初始化，而超出数组范围的下一块内存缺被初始化了
+7. 书上。
